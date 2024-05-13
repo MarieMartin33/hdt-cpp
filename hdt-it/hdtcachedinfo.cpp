@@ -1,7 +1,7 @@
 #include "hdtcachedinfo.hpp"
 #include "constants.h"
 
-#include "../../hdt-lib/src/triples/BitmapTriples.hpp"
+#include "../../libhdt/src/triples/BitmapTriples.hpp"
 
 #include <fstream>
 

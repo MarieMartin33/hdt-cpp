@@ -164,7 +164,8 @@ void BitSequence375::set(const size_t i, bool val) {
 		// fprintf(stderr, "[WARN] Unsafe cast called\n");
 		bitset((uint64_t*) &array[0], i);
 		#else
-		bitset(&array[0], i);
+		/* MM33: use ifdef __APPLE__ here */
+		bitset((uint64_t*) &array[0], i);
 		#endif
 	} else {
 		#ifdef __EMSCRIPTEN__
@@ -174,7 +175,8 @@ void BitSequence375::set(const size_t i, bool val) {
 		// fprintf(stderr, "[WARN] Unsafe cast called\n");
 		bitclean((uint64_t*)&array[0], i);
 		#else
-		bitclean(&array[0], i);
+		/* MM33: use ifdef __APPLE__ here */
+		bitclean((uint64_t*) &array[0], i);
 		#endif
 	}
 
@@ -196,7 +198,8 @@ bool BitSequence375::access(const size_t i) const
 	//fprintf(stderr, "[WARN] Unsafe cast called\n");
 	return bitget((uint64_t*)array, i);
 	#else
-	return bitget(array, i);
+	/* MM33: use ifdef __APPLE__ here */
+	return bitget((uint64_t*) array, i);
 	#endif
 }
 

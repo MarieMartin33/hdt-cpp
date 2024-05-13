@@ -6,7 +6,7 @@
 
 class QFont;
 
-#include "../hdt-lib/src/dictionary/LiteralDictionary.hpp"
+#include "../libhdt/src/dictionary/LiteralDictionary.hpp"
 
 RegexModel::RegexModel(HDTController *manager) : hdtController(manager), numResults(0), results(NULL)
 {

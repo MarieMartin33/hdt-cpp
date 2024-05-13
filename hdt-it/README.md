@@ -14,36 +14,89 @@ Download executable
 
 An executable version of the tool is available for multiple platforms in http://www.rdfhdt.org/downloads/ 
 
-Compiling
+Compiling (MacOS Sonoma 14.3)
 =================
 
-Dependencies: 
+Install and check dependencies: 
 
-- HDT-Lib 
-- QT4 (http://doc.qt.io/qt-4.8/)
-	
-Compilation:
-	
-1.Compile the main hdt-lib library. To compile the library run `make` under the directory `hdt-lib`, this will generate the library and tools.
-2. Execute Qmake in libcds-v1.0.12:
+- Qt5
+- automake, autoconf, pkg-config...
+- python3, meson, ninja
+- serd
 
-    $ cd libcds-v1.0.12/qmake
+    $ brew install python
+    $ brew install autoconf
+    $ brew install libtool
+    $ brew install pkg-config
+    $ brew install aclocal
+    $ brew install cloc
+    $ brew install automake
+
+    $ # verify Qt version:
+    $ qmake --version
+    $ # this installs Qt6 by default. this won't work later at compilation time:
+    $ # brew install qt
+    $ # this installs Qt5:
+    $ brew install qt5
+    $ # this forces qt5 symlink if Qt6 was installed. Check before apply:
+    $ brew link --overwrite qt@5 --dry-run
+    $ brew link qt5 --force
+    $ brew link --overwrite qt@5
+
+Compile:
+
+(in case of pb: run "make clean" and resubmit yours commands)
+	
+1.Compile a static version of the "serd" library:
+
+    $ git clone https://github.com/drobilla/serd.git
+    $ cd serd
+
+    $ python3 -m venv .venv
+    $ source .venv/bin/activate
+    $ python3 -m pip install meson
+    $ python3 -m pip install ninja
+    $ meson setup --default-library=static build
+    $ cd buid
+    $ meson configure
+    $ meson compile
+    $ meson install
+    $ ls -al /usr/local/lib/
+    $ deactivate
+
+2. Execute Qmake in libcds:
+
+    $ cd libcds
     $ qmake 
     $ make
+    $ sudo make install
+    $ ls -al /usr/local/lib/
     
-3.Execute Qmake in hdt-lib
+3.Execute Qmake in libhdt:
 
-    $ cd hdt-lib/qmake
-    $ qmake 
+    $ cd libhdt
+    $ qmake
+    $ # To compile the library run `make`, this will generate the library and tools:
     $ make
+    $ sudo make install
+    $ ls -al /usr/local/lib/
     
-4.Execute Qmake in hdt-it
+4.Execute Qmake in hdt-it:
 
     $ cd hdt-it
-    $ qmake 
-    $ make
+    $ ./autogen.sh
+    $ ./configure
+    $ make -j2
+    $ sudo make install
+    $ ls -al /usr/local/lib/
 
-The application should be available in a new hdt-it subfolder (e.g. hdt-it/unix or hdt-it/win32)
+The application should be available in a new hdt-it subfolder (e.g. hdt-it/unix, hdt-it/win32, hdt-it/macx)
+
+5. Launch the HDT-IT Gui application:
+
+    $ # under MacOSX:
+    $ cd hdt-it/macx/HDT-it.app/Contents/Resources
+    $ ./HDT-it
  
 Licensing
 =================

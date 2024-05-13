@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui opengl
+QT       += core gui opengl widgets
 
 QMAKE_CXXFLAGS_RELEASE -= -O2
 QMAKE_CXXFLAGS_RELEASE += -O3
@@ -89,22 +89,23 @@ FORMS    += hdtit.ui \
 
 TRANSLATIONS += hdt-it_es.ts
 
-LIBCDS = ../libcds-v1.0.12
+LIBCDS = ../libcds
 
 # Using Hard-coded Makefile
-INCLUDEPATH += $${LIBCDS}/includes ../hdt-lib/include/ .
-#LIBS += $${LIBCDS}/lib/libcds.a ../hdt-lib/libhdt.a
+INCLUDEPATH += $${LIBCDS}/includes ../libhdt/include/ /usr/local/include/ ./macx/ .
+#LIBS += $${LIBCDS}/lib/libcds.a ../libhdt/libhdt.a
 
 # Using autotools
-#LIBS += $${LIBCDS}/src/.libs/libcds.a ../hdt-lib/.libs/libhdt.a
+#LIBS += $${LIBCDS}/src/.libs/libcds.a ../libhdt/.libs/libhdt.a
 
 # Using Qt Projects
-#win32:LIBS += ../hdt-lib/qmake/win32/libhdt.a $${LIBCDS}/qmake/win32/libcds.a
+#win32:LIBS += ../libhdt/qmake/win32/libhdt.a $${LIBCDS}/qmake/win32/libcds.a
 
-win32:LIBS += ../hdt-lib/qmake/win32/hdt.lib $${LIBCDS}/qmake/win32/cds.lib "F:\git\zlib\bin\zlib.lib" "C:\Program Files (x86)\Windows Kits\10\Lib\10.0.10586.0\um\x64\opengl32.lib" "C:\Program Files (x86)\Windows Kits\10\Lib\10.0.10586.0\um\x64\glu32.lib" "F:\serd-0.26.0\bin\serd.lib"
+win32:LIBS += ../libhdt/qmake/win32/hdt.lib $${LIBCDS}/qmake/win32/cds.lib "F:\git\zlib\bin\zlib.lib" "C:\Program Files (x86)\Windows Kits\10\Lib\10.0.10586.0\um\x64\opengl32.lib" "C:\Program Files (x86)\Windows Kits\10\Lib\10.0.10586.0\um\x64\glu32.lib" "F:\serd-0.26.0\bin\serd.lib"
 
-unix:!macx:LIBS += ../hdt-lib/qmake/unix/libhdt.a $${LIBCDS}/qmake/unix/libcds.a -lGLU
-macx:LIBS += $${LIBCDS}/qmake/macx/libcds.a ../hdt-lib/qmake/macx/libhdt.a
+unix:!macx:LIBS += ../libhdt/qmake/unix/libhdt.a $${LIBCDS}/qmake/unix/libcds.a -lGLU
+macx:LIBS += /usr/local/lib/libcds.a /usr/local/lib/libhdt.a /usr/local/lib/libserd-0.a
+#macx:LIBS += -F/usr/local/lib
 #PRE_TARGETDEPS += $$LIBS
 
 # Installed in the system
@@ -123,7 +124,7 @@ win32-g++:contains(QMAKE_HOST.arch, x86_64):{
 win32:LIBS += -L"C:/msys/local/lib/" -L"/usr/local/lib" -L"C:/MinGW/msys/1.0/local/lib/"
 
 #Unix (Linux & Mac)
-unix:LIBS += -L"/usr/local/lib" -lz -lserd-0
+unix:LIBS += -L"/usr/local/lib" -lz
 
 RESOURCES += \
     hdtresources.qrc

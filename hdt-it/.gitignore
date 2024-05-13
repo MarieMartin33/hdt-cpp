@@ -6,3 +6,6 @@ win32/
 macx/
 hdt-it.pro.user*
 object_script.*
+*.dmg
+macdmg/
+.qmake.stash
