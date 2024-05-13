@@ -8,6 +8,12 @@ that can also be queried for Triple Patterns.
 
 ## Getting Started
 
+### Compile and use HDT-IT
+
+Try this first under MacOS:
+
+see hdt-it/README.md
+
 ### Prerequisites
 
 In order to compile this library, you need to have the following
