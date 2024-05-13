@@ -10,9 +10,9 @@ that can also be queried for Triple Patterns.
 
 ### Compile and use HDT-IT
 
-Try this first under MacOS:
+** MM33 : Try this first under MacOS: **
+see [HDT-IT README](hdt-it/README.md)
 
-see hdt-it/README.md
 
 ### Prerequisites
 

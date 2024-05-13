@@ -24,6 +24,7 @@ Install and check dependencies:
 - python3, meson, ninja
 - serd
 
+```sh
     $ brew install python
     $ brew install autoconf
     $ brew install libtool
@@ -31,7 +32,9 @@ Install and check dependencies:
     $ brew install aclocal
     $ brew install cloc
     $ brew install automake
+```
 
+```sh
     $ # verify Qt version:
     $ qmake --version
     $ # this installs Qt6 by default. this won't work later at compilation time:
@@ -42,6 +45,7 @@ Install and check dependencies:
     $ brew link --overwrite qt@5 --dry-run
     $ brew link qt5 --force
     $ brew link --overwrite qt@5
+```
 
 Compile:
 
@@ -49,6 +53,7 @@ Compile:
 	
 1.Compile a static version of the "serd" library:
 
+```sh
     $ git clone https://github.com/drobilla/serd.git
     $ cd serd
 
@@ -63,40 +68,49 @@ Compile:
     $ meson install
     $ ls -al /usr/local/lib/
     $ deactivate
+```
 
 2. Execute Qmake in libcds:
 
+```sh
     $ cd libcds
     $ qmake 
     $ make
     $ sudo make install
     $ ls -al /usr/local/lib/
-    
+```
+
 3.Execute Qmake in libhdt:
 
+```sh
     $ cd libhdt
     $ qmake
     $ # To compile the library run `make`, this will generate the library and tools:
     $ make
     $ sudo make install
     $ ls -al /usr/local/lib/
-    
+```
+
 4.Execute Qmake in hdt-it:
 
+```sh
     $ cd hdt-it
     $ ./autogen.sh
     $ ./configure
     $ make -j2
     $ sudo make install
     $ ls -al /usr/local/lib/
+```
 
 The application should be available in a new hdt-it subfolder (e.g. hdt-it/unix, hdt-it/win32, hdt-it/macx)
 
 5. Launch the HDT-IT Gui application:
 
+```sh
     $ # under MacOSX:
     $ cd hdt-it/macx/HDT-it.app/Contents/Resources
     $ ./HDT-it
+```
  
 Licensing
 =================
